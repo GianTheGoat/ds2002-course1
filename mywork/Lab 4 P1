@@ -1,0 +1,7 @@
+#!bin/bash
+read -p "Enter your image link: " LINK
+curl $LINK > basketball.png
+aws s3 cp basketball.png s3://ds2002-xxn3na/
+aws s3 presign --expires-in 604800 s3://ds2002-xxn3na/basketball.png
+
+https://ds2002-xxn3na.s3.us-east-1.amazonaws.com/basketball.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAYS2NSOJFK4RL6KWC%2F20240321%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240321T210624Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Security-Token=FwoGZXIvYXdzEC4aDDeKdulgadF2NRS6SSLEAbLV3wbsNmxkB3g1p%2BtbbU%2BThbzYtsfgg41LwcMrmT4pHdH1jDwIChC30ZbdLcOryAve7aXvhaJz0Fafol9hHvs154UYe9tbZR16LEXYdauRHraDfhRU7RYz6e7IYXrhVizCUnAM1LxtgZwh9txT0sIUPaK0HekNmXCe2lqrcYzrmXjYVbvR2kJqRQzigsXrX1v3YLLLkXZeFIeY7jgV4D%2FCuhn6eNK0diT5wz88Oi42nBEQE2Y7AUZE52SLrNHMF1sIJgYomL%2FyrwYyLeuInTPtLIlblaXGf%2B4uacaF2acHv3ZESE%2FeXCnTEs9pIrcEZgH8zA8CNRvJgA%3D%3D&X-Amz-Signature=7bb855eff168ed04053a4e2d07587ccb33518834f46a6bf01517555a0f66f89d
