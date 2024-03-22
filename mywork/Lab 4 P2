@@ -1,0 +1,19 @@
+import boto3
+
+s3 = boto3.client("s3")
+
+bucket = "ds2002-xxn3na"
+object = "Basketball.png"
+expires = 604800
+
+def presign(bucket, object, expires = 604800):
+
+  response = s3.generate_presigned_url(
+  "get_object",
+  Params = {"Bucket": bucket, "Key": object}, ExpiresIn = expires)
+
+  return response
+
+print(presign(bucket, object, expires))
+
+https://ds2002-xxn3na.s3.amazonaws.com/Basketball.png?AWSAccessKeyId=ASIAYS2NSOJFKUDF4M3O&Signature=7EFs6c02Dz2WFyup1llEEuF2Qyc%3D&x-amz-security-token=FwoGZXIvYXdzEEgaDH6XIQCfpXc8GILT2SLEAcA8MRnfU7jSYpUe6373QM638f%2FoZ1YcAAp239stX9kAC%2FhoteHs%2FxJkfSDkqLLb%2F%2FJeMCyKKK0ks29IqGK7NOUBwjVA8zhtOnTg81QU2IyTEFA8XBlpTDuIYx64s3QTFrsDOFN29Q%2B9XoYiumsM29MnaShzACptwFKr%2F4ksM5owOYNP%2Bj9bGXU4tvFa%2Fjodie77gTqFT1Dcmm3Ld3ONK68p7B2nRbGDO96e3zRFVleEpKLKg%2FrM07bvCv%2FgLLquupdHys8ovJL4rwYyLfJQyGkIPJ9DzPgQAdSMEhYQDtcllDI9T9xxHwWtGXRmuzlYUEYHIIY4e428Uw%3D%3D&Expires=1711752557
